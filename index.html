@@ -3,240 +3,782 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portable Workstation</title>
-
+  <title>James's Portable Workstation | My Perfect Portable Rig</title>
+  <meta name="description" content="An award-winning showcase of professional mobile workstation - interactive, beautiful, addictive.">
+  
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["system-ui", "Segoe UI", "sans-serif"],
-          },
-        },
-      },
-    };
-  </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
   <style>
+    /* ==================== THEME VARIABLES ==================== */
     :root {
       --bg: #020617;
+      --bg-rgb: 2, 6, 23;
       --text: #e5e7eb;
       --muted: #9ca3af;
-      --card-bg: #020617;
-      --border: #1f2937;
+      --card-bg: rgba(15, 23, 42, 0.7);
+      --border: rgba(148, 163, 184, 0.2);
       --accent: #38bdf8;
       --accent-2: #22c55e;
-      --btn-text: #020617;
-      --chat-bg: #020617;
-      --chat-text: #e5e7eb;
-      --chat-border: #1f2937;
-      --chat-user-bg: #38bdf8;
-      --chat-user-text: #020617;
-      --chat-bot-bg: #020617;
-      --chat-bot-text: #e5e7eb;
+      --accent-rgb: 56, 189, 248;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    .theme-darkpro {
+      --bg: #020617;
+      --bg-rgb: 2, 6, 23;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card-bg: rgba(15, 23, 42, 0.7);
+      --border: rgba(148, 163, 184, 0.2);
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --accent-rgb: 56, 189, 248;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
 
     .theme-apple {
       --bg: #f5f5f7;
-      --text: #111827;
-      --muted: #6b7280;
-      --card-bg: #ffffff;
-      --border: #e5e7eb;
-      --accent: #2563eb;
-      --accent-2: #38bdf8;
-      --btn-text: #ffffff;
-      --chat-bg: #ffffff;
-      --chat-text: #111827;
-      --chat-border: #e5e7eb;
-      --chat-user-bg: #2563eb;
-      --chat-user-text: #ffffff;
-      --chat-bot-bg: #f3f4f6;
-      --chat-bot-text: #111827;
+      --bg-rgb: 245, 245, 247;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #0071e3;
+      --accent-2: #06c;
+      --accent-rgb: 0, 113, 227;
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(0, 0, 0, 0.05);
     }
 
     .theme-neon {
       --bg: #000000;
-      --text: #0ff;
+      --bg-rgb: 0, 0, 0;
+      --text: #00ffff;
       --muted: #67e8f9;
-      --card-bg: #000;
-      --border: #0ff5;
-      --accent: #22d3ee;
-      --accent-2: #f472b6;
-      --btn-text: #000;
-      --chat-bg: #000;
-      --chat-text: #0ff;
-      --chat-border: #0ff5;
-      --chat-user-bg: #f472b6;
-      --chat-user-text: #000;
-      --chat-bot-bg: #00111a;
-      --chat-bot-text: #0ff;
+      --card-bg: rgba(0, 26, 26, 0.8);
+      --border: rgba(0, 255, 255, 0.3);
+      --accent: #00ffff;
+      --accent-2: #ff00ff;
+      --accent-rgb: 0, 255, 255;
+      --glass-bg: rgba(0, 255, 255, 0.05);
+      --glass-border: rgba(0, 255, 255, 0.2);
     }
 
     .theme-amazon {
       --bg: #f3f4f6;
+      --bg-rgb: 243, 244, 246;
       --text: #111827;
       --muted: #6b7280;
-      --card-bg: #ffffff;
-      --border: #e5e7eb;
-      --accent: #2563eb;
-      --accent-2: #f59e0b;
-      --btn-text: #ffffff;
-      --chat-bg: #ffffff;
-      --chat-text: #111827;
-      --chat-border: #e5e7eb;
-      --chat-user-bg: #2563eb;
-      --chat-user-text: #ffffff;
-      --chat-bot-bg: #f9fafb;
-      --chat-bot-text: #111827;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #ff9900;
+      --accent-2: #146eb4;
+      --accent-rgb: 255, 153, 0;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(0, 0, 0, 0.08);
     }
 
     .theme-gradient {
-      --bg: #020617;
+      --bg: #0f172a;
+      --bg-rgb: 15, 23, 42;
       --text: #e5e7eb;
       --muted: #9ca3af;
-      --card-bg: rgba(15, 23, 42, 0.85);
-      --border: rgba(148, 163, 184, 0.3);
+      --card-bg: rgba(30, 27, 75, 0.6);
+      --border: rgba(148, 163, 184, 0.2);
       --accent: #6366f1;
       --accent-2: #ec4899;
-      --btn-text: #020617;
-      --chat-bg: rgba(15, 23, 42, 0.9);
-      --chat-text: #e5e7eb;
-      --chat-border: rgba(148, 163, 184, 0.4);
-      --chat-user-bg: #6366f1;
-      --chat-user-text: #020617;
-      --chat-bot-bg: rgba(15, 23, 42, 0.9);
-      --chat-bot-text: #e5e7eb;
+      --accent-rgb: 99, 102, 241;
+      --glass-bg: rgba(99, 102, 241, 0.1);
+      --glass-border: rgba(236, 72, 153, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      overflow-x: hidden;
+      transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                  color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
+    /* Custom Cursor */
+    #custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.3s ease;
+      opacity: 0;
+      mix-blend-mode: difference;
     }
-    .btn {
-      background: var(--accent);
-      color: var(--btn-text);
+
+    #custom-cursor.active {
+      opacity: 1;
+    }
+
+    #custom-cursor.hover {
+      transform: scale(2);
+      background: rgba(var(--accent-rgb), 0.1);
+    }
+
+    /* Glassmorphism */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-strong {
+      background: var(--card-bg);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 64px rgba(0, 0, 0, 0.2);
+    }
+
+    /* WebGL Hero Background */
+    #hero-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      background: var(--glass-bg);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-selector {
       padding: 0.5rem 1rem;
       border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      color: var(--text);
       font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      outline: none;
+    }
+
+    .theme-selector:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 8s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--muted);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Stats Bar */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .stat-card {
+      position: relative;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .stat-card:hover::before {
+      opacity: 0.1;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(var(--accent-rgb), 0.3);
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .bento-item {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .bento-item:hover {
+      transform: translateY(-12px);
+      z-index: 10;
+    }
+
+    /* Grid positioning */
+    .bento-large { grid-column: span 8; grid-row: span 2; }
+    .bento-medium { grid-column: span 6; }
+    .bento-small { grid-column: span 4; }
+    .bento-wide { grid-column: span 8; }
+
+    @media (max-width: 1024px) {
+      .bento-large, .bento-medium, .bento-small, .bento-wide { 
+        grid-column: span 12; 
+      }
+    }
+
+    /* Product Cards */
+    .product-card {
+      position: relative;
+      padding: 2rem;
+      min-height: 300px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(var(--accent-rgb), 0.1), 
+        rgba(var(--accent-rgb), 0));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      border-radius: 1.5rem;
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--accent);
+      color: var(--bg);
+      margin-bottom: 1rem;
+    }
+
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .product-specs {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .product-note {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 2px solid var(--accent);
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-top: auto;
+    }
+
+    /* Trivia Widget */
+    #trivia-widget {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 360px;
+      max-width: calc(100vw - 4rem);
+      z-index: 999;
+      transform: translateX(120%);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #trivia-widget.visible {
+      transform: translateX(0);
+    }
+
+    .trivia-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trivia-streak {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .trivia-body {
+      padding: 1.5rem;
+    }
+
+    .trivia-question {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .trivia-answer {
+      padding: 1rem;
+      background: var(--glass-bg);
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+    }
+
+    .trivia-locked {
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .close-trivia {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-trivia:hover {
+      color: var(--accent);
+      background: var(--glass-bg);
+      transform: rotate(90deg);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up { 
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards; 
+    }
+
+    /* Stagger delays */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    .delay-7 { animation-delay: 0.7s; }
+    .delay-8 { animation-delay: 0.8s; }
+
+    /* Theme-specific effects */
+    .theme-neon .glass {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3),
+                  0 0 40px rgba(255, 0, 255, 0.2);
+    }
+
+    .theme-neon .product-card:hover {
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6),
+                  0 0 60px rgba(255, 0, 255, 0.4);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 6rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 
-<body class="min-h-screen">
+<body>
+  <!-- Custom Cursor -->
+  <div id="custom-cursor"></div>
 
-<header class="p-6 max-w-5xl mx-auto flex justify-between items-center">
-  <h1 class="text-3xl font-bold">Portable Workstation</h1>
+  <!-- WebGL Hero Background -->
+  <canvas id="hero-canvas"></canvas>
 
-  <select id="themeSelector"
-    class="px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)]">
-    <option value="theme-darkpro">Dark Pro</option>
-    <option value="theme-apple">Apple Clean</option>
-    <option value="theme-neon">Neon</option>
-    <option value="theme-amazon">Amazon Clean</option>
-    <option value="theme-gradient">Ultra Gradient</option>
-  </select>
-</header>
+  <div class="content-wrapper">
+    <!-- Header -->
+    <header id="main-header" class="glass">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl md:text-3xl font-bold">
+          <span class="gradient-text">Portable Workstation</span>
+        </h1>
+        
+        <select id="themeSelector" class="theme-selector">
+          <option value="theme-darkpro">Dark Pro</option>
+          <option value="theme-apple">Apple Clean</option>
+          <option value="theme-neon">Neon</option>
+          <option value="theme-amazon">Amazon</option>
+          <option value="theme-gradient">Ultra Gradient</option>
+        </select>
+      </div>
+    </header>
 
-<section class="text-center py-20 max-w-3xl mx-auto">
-  <h2 class="text-5xl font-bold mb-4"
-    style="background: linear-gradient(135deg, var(--accent), var(--accent-2));
-           -webkit-background-clip: text; color: transparent;">
-    Build Your Perfect Portable Rig
-  </h2>
-  <p class="text-lg opacity-80">Five themes. One layout. Fully dynamic and AI-powered.</p>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1 class="gradient-text fade-in-up">
+        My Perfect<br>Portable Rig
+      </h1>
+      <p class="hero-subtitle fade-in-up delay-1">
+        8.5 lbs of professional-grade mobile computing
+      </p>
+      <p class="text-base opacity-70 fade-in-up delay-2">
+        Core Ultra 9 performance. All-day battery. From coffee shops to airports.
+      </p>
+    </section>
 
-<section id="productGrid"
-  class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-</section>
+    <!-- Stats Bar -->
+    <section class="stats-grid">
+      <div class="stat-card glass-strong fade-in-up delay-1">
+        <div class="stat-value gradient-text" data-target="8.5">0</div>
+        <div class="stat-label">Pounds</div>
+      </div>
+      <div class="stat-card glass-strong fade-in-up delay-2">
+        <div class="stat-value gradient-text" data-target="8">0</div>
+        <div class="stat-label">Core Items</div>
+      </div>
+      <div class="stat-card glass-strong fade-in-up delay-3">
+        <div class="stat-value gradient-text" data-target="140">0</div>
+        <div class="stat-label">Peak Power (W)</div>
+      </div>
+      <div class="stat-card glass-strong fade-in-up delay-4">
+        <div class="stat-value gradient-text" data-target="2300">0</div>
+        <div class="stat-label">Total Value ($)</div>
+      </div>
+    </section>
 
-<button id="aiChatToggle"
-  class="fixed bottom-5 right-5 h-14 w-14 flex items-center justify-center shadow-xl text-2xl"
-  style="background: var(--accent); color: var(--btn-text); border-radius: 999px;">
-  ðŸ’¬
-</button>
+    <!-- Bento Grid - Products -->
+    <main class="bento-grid">
+      
+      <!-- Zenbook - Large Feature -->
+      <article class="bento-item bento-large glass-strong product-card fade-in-up delay-1">
+        <span class="badge">2.6 lbs</span>
+        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=1200&q=80" 
+             alt="ASUS Zenbook 14" 
+             class="product-image" />
+        <h3 class="product-title">ASUS Zenbook 14</h3>
+        <div class="product-specs">
+          Core Ultra 9 285H • 32GB RAM • 1TB SSD • 14" 1920x1200 touchscreen
+        </div>
+        <p class="product-note">
+          The lightest Core Ultra 9 laptop available. Premium build, all-day battery, perfect portability.
+        </p>
+        <div class="product-price">~$1,299</div>
+      </article>
 
-<div id="aiChatWindow"
-  class="fixed bottom-24 right-5 w-80 max-w-[92vw] p-4 hidden shadow-2xl"
-  style="background: var(--chat-bg); border: 1px solid var(--chat-border); border-radius: 0.75rem;">
-  <div class="flex justify-between mb-2">
-    <span class="font-semibold">AI Shopping Assistant</span>
-    <button id="aiChatClose" class="opacity-70 hover:opacity-100">Close</button>
+      <!-- Lenovo Monitor - Medium -->
+      <article class="bento-item bento-medium glass-strong product-card fade-in-up delay-2">
+        <span class="badge">~1.7 lbs</span>
+        <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80" 
+             alt="Lenovo Portable Monitor" 
+             class="product-image" />
+        <h3 class="product-title">Lenovo Monitor 15.6"</h3>
+        <div class="product-specs">
+          USB-C powered • Portable • Slides in bag
+        </div>
+        <p class="product-note">
+          Doubles screen real estate without bulk. Essential for multi-tasking on the go.
+        </p>
+        <div class="product-price">~$249</div>
+      </article>
+
+      <!-- UGREEN HDMI Cable - Small -->
+      <article class="bento-item bento-small glass-strong product-card fade-in-up delay-3">
+        <span class="badge">0.2 lbs</span>
+        <img src="https://images.unsplash.com/photo-1625948515291-69613efd103f?w=600&q=80" 
+             alt="UGREEN HDMI Cable" 
+             class="product-image" />
+        <h3 class="product-title">UGREEN HDMI 6.6ft</h3>
+        <div class="product-specs">
+          Micro HDMI to HDMI • 4K 60Hz • 18Gbps
+        </div>
+        <div class="product-price">~$12</div>
+      </article>
+
+      <!-- UGREEN Hub - Medium -->
+      <article class="bento-item bento-medium glass-strong product-card fade-in-up delay-4">
+        <span class="badge">0.2 lbs</span>
+        <img src="https://images.unsplash.com/photo-1625948515291-69613efd103f?w=800&q=80" 
+             alt="UGREEN USB Hub" 
+             class="product-image" />
+        <h3 class="product-title">UGREEN 5-in-1 Hub</h3>
+        <div class="product-specs">
+          100W PD • 4K HDMI • 3x USB-A 3.0 • Aluminum
+        </div>
+        <p class="product-note">
+          One port becomes five. Powers laptop while connecting peripherals and display simultaneously.
+        </p>
+        <div class="product-price">~$40</div>
+      </article>
+
+      <!-- Chargers - Wide -->
+      <article class="bento-item bento-wide glass-strong product-card fade-in-up delay-5">
+        <h3 class="product-title">Power Solutions</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+          <div>
+            <span class="badge">0.4 lbs</span>
+            <h4 style="font-size: 1.1rem; margin: 1rem 0;">ASUS 65W</h4>
+            <p class="product-specs">Original adapter • Reliable backup</p>
+            <div class="product-price" style="font-size: 1.2rem;">Included</div>
+          </div>
+          <div>
+            <span class="badge">0.3 lbs</span>
+            <h4 style="font-size: 1.1rem; margin: 1rem 0;">UGREEN 130W Car</h4>
+            <p class="product-specs">USB-C car charger • iPhone & MacBook compatible</p>
+            <div class="product-price" style="font-size: 1.2rem;">~$35</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Logitech G305 - Small -->
+      <article class="bento-item bento-small glass-strong product-card fade-in-up delay-6">
+        <span class="badge">0.3 lbs</span>
+        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80" 
+             alt="Logitech G305" 
+             class="product-image" />
+        <h3 class="product-title">Logitech G305</h3>
+        <div class="product-specs">
+          Wireless gaming • 12K DPI HERO sensor
+        </div>
+        <div class="product-price">~$50</div>
+      </article>
+
+      <!-- Bose Headphones - Small -->
+      <article class="bento-item bento-small glass-strong product-card fade-in-up delay-7">
+        <span class="badge">0.5 lbs</span>
+        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&q=80" 
+             alt="Bose Headphones" 
+             class="product-image" />
+        <h3 class="product-title">Bose NC</h3>
+        <div class="product-specs">
+          Active ANC • Over-ear • Bluetooth
+        </div>
+        <div class="product-price">$199</div>
+      </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass">
+      <p><strong>Built for portability. Optimized for productivity.</strong></p>
+      <p style="margin-top: 1rem;">Total: 8.5 lbs • $2,300 value • Fully mobile</p>
+      <p style="margin-top: 2rem; font-size: 0.8rem;">
+        Made with ❤️ and way too much coffee
+      </p>
+    </footer>
   </div>
 
-  <div id="aiChatMessages"
-    class="h-64 overflow-y-auto p-2 border rounded-lg space-y-3 text-sm"
-    style="border-color: var(--chat-border);">
+  <!-- Daily Trivia Widget -->
+  <div id="trivia-widget" class="glass-strong">
+    <div class="trivia-header">
+      <div>
+        <h3 style="font-weight: 700; margin-bottom: 0.25rem;">Daily Tech Trivia</h3>
+        <div class="trivia-streak">
+          🔥 <span id="streak-count">0</span> day streak
+        </div>
+      </div>
+      <button class="close-trivia" onclick="closeTriviaWidget()">×</button>
+    </div>
+    <div class="trivia-body">
+      <div class="trivia-question" id="trivia-question">
+        Loading today's question...
+      </div>
+      <div id="trivia-answer-section">
+        <!-- Answer will be inserted here -->
+      </div>
+    </div>
   </div>
 
-  <div class="flex mt-3">
-    <input id="aiChatInput"
-      class="flex-1 p-2 rounded-l-lg border bg-transparent"
-      style="border-color: var(--chat-border);"
-      placeholder="Ask what to buy next..." />
-    <button id="aiChatSend" class="btn rounded-l-none">Send</button>
-  </div>
-</div>
-
-<script>
-const themeSelector = document.getElementById("themeSelector");
-themeSelector.onchange = e => document.documentElement.className = e.target.value;
-
-const products = [
-  { name: "Your Laptop", price: "$999", img: "https://via.placeholder.com/600x400", tag: "Ultra portable", link: "#" }
-];
-
-document.getElementById("productGrid").innerHTML = products.map(p=>`
-  <article class="card p-4 flex flex-col gap-3 shadow-lg">
-    <img src="${p.img}" class="rounded-lg h-40 object-cover"/>
-    <h4 class="font-semibold text-lg">${p.name}</h4>
-    <p class="opacity-70 text-sm">${p.tag}</p>
-    <p class="font-semibold">${p.price}</p>
-    <a href="${p.link}" class="btn text-center mt-auto">View</a>
-  </article>
-`).join("");
-
-const chatWindow = document.getElementById("aiChatWindow");
-document.getElementById("aiChatToggle").onclick = ()=> chatWindow.classList.toggle("hidden");
-document.getElementById("aiChatClose").onclick = ()=> chatWindow.classList.add("hidden");
-
-const chatMessages = document.getElementById("aiChatMessages");
-
-function addMessage(type, text){
-  const bubble = document.createElement("div");
-  bubble.className = type==="user" ? "text-right" : "text-left";
-  bubble.innerHTML = `<span style="padding:6px 10px; display:inline-block; border-radius:8px;
-    background:${type==="user"?"var(--chat-user-bg)":"var(--chat-bot-bg)"};
-    color:${type==="user"?"var(--chat-user-text)":"var(--chat-bot-text)"};">${text}</span>`;
-  chatMessages.appendChild(bubble);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-document.getElementById("aiChatSend").onclick = async ()=>{
-  const input = document.getElementById("aiChatInput");
-  const prompt = input.value.trim();
-  if(!prompt) return;
-  addMessage("user", prompt);
-  input.value="";
-  try{
-    const r = await fetch("/api/ask",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({prompt})});
-    const d = await r.json();
-    addMessage("bot", d.reply||"Try again.");
-  }catch{
-    addMessage("bot","Error contacting AI.");
-  }
-};
-</script>
-
+  <script src="app.js"></script>
 </body>
 </html>
