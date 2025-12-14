@@ -1,0 +1,29 @@
+# robots.txt for edc.jamesabryan.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://edc.jamesabryan.com/sitemap.xml
+
+# Common crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block common bad bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Disallow admin/private files if you add them later
+# User-agent: *
+# Disallow: /admin/
+# Disallow: /private/
