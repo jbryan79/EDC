@@ -1,0 +1,159 @@
+{
+  "partnertag": "mylineup-20",
+  "categories": [
+    {
+      "id": "flashlights",
+      "name": "EDC Flashlights",
+      "icon": "🔦",
+      "description": "Ultra-compact powerhouses that obliterate darkness. These aren't your hardware store impulse buys.",
+      "products": [
+        {
+          "asin": "B0DYV3PKNV",
+          "customTitle": "OLIGHT Baton4 Premium Edition EDC Flashlight",
+          "customDescription": "I'm completely amazed with the performance of this flashlight. After several days of daily use, it has exceeded every expectation I had. The magnetic tail cap deserves special mention - it's not just a feature, it's genuinely the best implementation I've encountered.",
+          "whyLove": [
+            "Magnetic tail cap - best implementation I've seen",
+            "Hands-free lighting in tight spaces",
+            "Perfect for car repairs and house work",
+            "100% accurate product description",
+            "Build quality exceeds expectations"
+          ],
+          "brand": "OLIGHT",
+          "badge": "Premium EDC Flashlight"
+        }
+      ]
+    },
+    {
+      "id": "knives",
+      "name": "EDC Knives",
+      "icon": "🔪",
+      "description": "As an avid knife collector, these are the blades that actually make it into my pocket. From budget beaters to premium folders, every knife here has proven itself in daily carry.",
+      "products": [
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/48YU7vo",
+          "customTitle": "Spyderco Para Military 2",
+          "customDescription": "The blade that started my 15+ year obsession. Upgraded steel surpasses the legendary S30V. I've put this through absolute hell - cutting wood with a hammer for a year straight. Still perfect. Sticky camo handles you literally can't drop. Must-have EDC.",
+          "whyLove": [
+            "15+ years, same knife - ultimate durability proof",
+            "Survived brutal hammer & wood cutting torture test",
+            "Locking mechanism still flawless after abuse",
+            "Sticky camo grip - impossible to drop",
+            "Blade snob approved - started my obsession"
+          ],
+          "brand": "SPYDERCO",
+          "badge": "15+ Years EDC Proven"
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "name": "Tech Accessories",
+      "icon": "⚡",
+      "description": "USB-C hubs, cables, and chargers that actually work. After destroying countless cheap accessories, these are the tech tools that have earned permanent spots in my bag.",
+      "products": [
+        {
+          "asin": "B0BR3M8XHK",
+          "customTitle": "UGREEN 5-in-1 USB-C Hub",
+          "customDescription": "The hub that travels everywhere with me. 4K HDMI, 100W Power Delivery, and 3 USB-A ports in an aluminum body that stays cool even during 8-hour work sessions.",
+          "whyLove": [
+            "Never overheats (competitors got burning hot)",
+            "100W PD actually delivers 100W (tested)",
+            "Aluminum shell = premium feel & heat dissipation",
+            "18+ months later, zero port failures"
+          ],
+          "brand": "UGREEN"
+        },
+        {
+          "asin": "B08P8X2DBZ",
+          "customTitle": "UGREEN 4K Micro HDMI Cable 6.6FT",
+          "customDescription": "My go-to for GoPro, Raspberry Pi, and camera work. The braided aluminum shell survived 6+ months of daily camera bag abuse with zero signal degradation.",
+          "whyLove": [
+            "Braided cable doesn't fray (cheap ones died in weeks)",
+            "True 4K 60Hz with zero frame drops",
+            "Aluminum connectors feel indestructible",
+            "18Gbps bandwidth = future-proof"
+          ],
+          "brand": "UGREEN"
+        },
+        {
+          "asin": "B0B3D9XW8X",
+          "customTitle": "UGREEN 130W USB-C Car Charger",
+          "customDescription": "Road trip essential. Charges my MacBook Pro and iPhone simultaneously at full speed. No more choosing which device gets priority power.",
+          "whyLove": [
+            "Actually delivers 130W (cheap brands lie)",
+            "Intelligent power splitting between ports",
+            "Metal build doesn't rattle in car socket",
+            "Saved me on 5+ hour road trips"
+          ],
+          "brand": "UGREEN"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/4qeBACy",
+          "customTitle": "ASUS Zenbook 14 Copilot AI Laptop",
+          "customDescription": "My daily driver for content creation and development. Intel 16-Core Ultra 9 285H, 32GB DDR5, and that stunning 14\" OLED touchscreen (500 nits HDR, 100% DCI-P3) make this an absolute powerhouse in an ultra-portable package.",
+          "whyLove": [
+            "14\" OLED touchscreen - colors are absolutely stunning",
+            "Intel Ultra 9 285H crushes creative workloads",
+            "32GB DDR5 + 1TB SSD - no compromises",
+            "AI Copilot integration for productivity boost",
+            "Ultra-portable but doesn't sacrifice performance"
+          ],
+          "brand": "ASUS",
+          "badge": "Premium Creator Laptop"
+        }
+      ]
+    },
+    {
+      "id": "gadgets",
+      "name": "Gadgets & Puzzles",
+      "icon": "🧩",
+      "description": "Unique puzzles, brain teasers, and EDC gadgets with 20% discount at checkout using my code. These conversation-starting pieces are perfect additions to any EDC collection!",
+      "couponCode": "DOGMWWBQ",
+      "discount": "20% OFF",
+      "products": [
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/49fikPt",
+          "customTitle": "Bicycle",
+          "customDescription": "Premium cycling gear at an unbeatable price. Perfect for EDC enthusiasts who bike commute.",
+          "whyLove": [],
+          "brand": "PUZZLE"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/48VW5Nj",
+          "customTitle": "Satellite in Cage",
+          "customDescription": "Unique tech accessory for the modern EDC setup. A conversation starter that's also functional.",
+          "whyLove": [],
+          "brand": "PUZZLE"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/45aNVzi",
+          "customTitle": "Trick Bolt",
+          "customDescription": "The ultimate EDC puzzle tool. Compact, challenging, and perfect for keeping your hands busy.",
+          "whyLove": [],
+          "brand": "PUZZLE"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/4s21DhO",
+          "customTitle": "Star in Circle",
+          "customDescription": "Unique geometric design accessory. A distinctive piece that stands out in any EDC collection.",
+          "whyLove": [],
+          "brand": "PUZZLE"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "shortLink": "https://amzn.to/4rWylkR",
+          "customTitle": "Horseshoe",
+          "customDescription": "Classic symbol of good fortune. A unique addition to your EDC gear collection.",
+          "whyLove": [],
+          "brand": "PUZZLE"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm i:*)",
+      "Bash(npm install)",
+      "Bash(del \"C:\\Users\\james\\OneDrive\\Projects\\EDC\\vercel.json\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

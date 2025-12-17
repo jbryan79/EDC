@@ -1,0 +1,22 @@
+{
+  "name": "edc-toolbox",
+  "version": "1.0.0",
+  "description": "Everyday Carry (EDC) affiliate site with Amazon PA-API integration",
+  "main": "src/build.js",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "node src/build.js && npx http-server dist",
+    "deploy": "npm run build && netlify deploy --prod"
+  },
+  "keywords": ["edc", "affiliate", "amazon"],
+  "author": "James Bryan",
+  "license": "ISC",
+  "dependencies": {
+    "paapi5-nodejs-sdk": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
