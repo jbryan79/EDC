@@ -33,7 +33,8 @@ async function fetchAmazonProductData(asins) {
     'Offers.Listings.DeliveryInfo.IsPrimeEligible',
     'Images.Primary.Large',
     'CustomerReviews.StarRating',
-    'CustomerReviews.Count'
+    'CustomerReviews.Count',
+    'BrowseNodeInfo.WebsiteSalesRank'
   ];
 
   try {
@@ -60,6 +61,13 @@ async function fetchAmazonProductData(asins) {
  * Extract product info from Amazon API response
  */
 function extractProductInfo(item) {
+  // Extract sales rank info
+  const salesRank = item.BrowseNodeInfo?.WebsiteSalesRank;
+  const isBestseller = salesRank && salesRank.SalesRank <= 100;
+  const salesRankDisplay = salesRank ?
+    `#${salesRank.SalesRank.toLocaleString()} in ${salesRank.ContextFreeName || salesRank.DisplayName}` :
+    null;
+
   const info = {
     title: item.ItemInfo?.Title?.DisplayValue || 'N/A',
     price: item.Offers?.Listings?.[0]?.Price?.DisplayAmount || 'Check Amazon',
@@ -68,7 +76,9 @@ function extractProductInfo(item) {
     image: item.Images?.Primary?.Large?.URL || '',
     starRating: item.CustomerReviews?.StarRating?.Value || 0,
     reviewCount: item.CustomerReviews?.Count || 0,
-    features: item.ItemInfo?.Features?.DisplayValues || []
+    features: item.ItemInfo?.Features?.DisplayValues || [],
+    isBestseller: isBestseller,
+    salesRank: salesRankDisplay
   };
 
   return info;
@@ -96,6 +106,12 @@ function generateProductCard(product, amazonData) {
   const isPrime = amazonData?.isPrime;
   const primeHTML = isPrime ? `<div class="prime-badge" style="position: absolute; top: 10px; right: 10px; background: #00A8E1; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;">Prime</div>` : '';
 
+  // Bestseller badge
+  const isBestseller = amazonData?.isBestseller;
+  const bestsellerHTML = isBestseller ?
+    `<div class="bestseller-badge" style="position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">🏆 Best Seller</div>` :
+    '';
+
   const imageSrc = amazonData?.image || '';
   const imageHTML = imageSrc ?
     `<img src="${imageSrc}" alt="${product.customTitle}" style="width: 100%; height: 100%; object-fit: contain;">` :
@@ -115,6 +131,11 @@ function generateProductCard(product, amazonData) {
     `<div class="availability" style="color: #4CAF50; font-size: 0.9rem; margin: 15px 0;">${amazonData.availability}</div>` :
     '';
 
+  // Sales rank display
+  const salesRankHTML = amazonData?.salesRank ?
+    `<div class="sales-rank" style="color: #888; font-size: 0.85rem; margin: 10px 0; font-style: italic;">${amazonData.salesRank}</div>` :
+    '';
+
   const whyLoveHTML = product.whyLove && product.whyLove.length > 0 ?
     `<div class="why-love">
       <h4>Why I Love This</h4>
@@ -129,6 +150,7 @@ function generateProductCard(product, amazonData) {
                 <div class="product-card">
                     <div class="card-content">
                         <div class="product-image" style="position: relative;">
+                            ${bestsellerHTML}
                             ${primeHTML}
                             ${imageHTML}
                         </div>
@@ -136,6 +158,7 @@ function generateProductCard(product, amazonData) {
                         <h3>${product.customTitle}</h3>
                         <p class="description">${product.customDescription}</p>
 
+                        ${salesRankHTML}
                         ${whyLoveHTML}
 
                         <div class="price-rating">
