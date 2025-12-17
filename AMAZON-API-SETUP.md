@@ -30,7 +30,7 @@ Edit `.env` and add your Amazon PA-API credentials:
 ```
 MY_AWS_ACCESS_KEY_ID=your_access_key_here
 MY_AWS_SECRET_ACCESS_KEY=your_secret_key_here
-MY_AWS_PARTNER_TAG=mylineup-20
+MY_AWS_PARTNER_TAG=your-partner-tag-20
 MY_AWS_REGION=us-east-1
 ```
 
@@ -100,7 +100,7 @@ Before deploying, add your API credentials to Netlify:
 2. Add these variables:
    - `MY_AWS_ACCESS_KEY_ID` = your_access_key
    - `MY_AWS_SECRET_ACCESS_KEY` = your_secret_key
-   - `MY_AWS_PARTNER_TAG` = mylineup-20
+   - `MY_AWS_PARTNER_TAG` = your-partner-tag-20
    - `MY_AWS_REGION` = us-east-1
 
 ### 6. Deploy to Netlify
