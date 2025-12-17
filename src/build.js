@@ -29,6 +29,7 @@ async function fetchAmazonProductData(asins) {
     'ItemInfo.Title',
     'ItemInfo.Features',
     'Offers.Listings.Price',
+    'Offers.Listings.SavingBasis',
     'Offers.Listings.Availability.Message',
     'Offers.Listings.DeliveryInfo.IsPrimeEligible',
     'Images.Primary.Large',
@@ -68,9 +69,24 @@ function extractProductInfo(item) {
     `#${salesRank.SalesRank.toLocaleString()} in ${salesRank.ContextFreeName || salesRank.DisplayName}` :
     null;
 
+  // Extract pricing and savings info
+  const currentPrice = item.Offers?.Listings?.[0]?.Price;
+  const savingBasis = item.Offers?.Listings?.[0]?.SavingBasis;
+
+  let savingsPercent = null;
+  let originalPrice = null;
+
+  if (currentPrice?.Amount && savingBasis?.Amount && savingBasis.Amount > currentPrice.Amount) {
+    const savings = savingBasis.Amount - currentPrice.Amount;
+    savingsPercent = Math.round((savings / savingBasis.Amount) * 100);
+    originalPrice = savingBasis.DisplayAmount;
+  }
+
   const info = {
     title: item.ItemInfo?.Title?.DisplayValue || 'N/A',
-    price: item.Offers?.Listings?.[0]?.Price?.DisplayAmount || 'Check Amazon',
+    price: currentPrice?.DisplayAmount || 'Check Amazon',
+    originalPrice: originalPrice,
+    savingsPercent: savingsPercent,
     availability: item.Offers?.Listings?.[0]?.Availability?.Message || 'Available',
     isPrime: item.Offers?.Listings?.[0]?.DeliveryInfo?.IsPrimeEligible || false,
     image: item.Images?.Primary?.Large?.URL || '',
@@ -122,10 +138,25 @@ function generateProductCard(product, amazonData) {
     `${amazonData.starRating || 'N/A'}/5 (${amazonData.reviewCount.toLocaleString()} reviews)` :
     (product.badge || 'Premium Product');
 
+  // Pricing with savings display
   const price = amazonData?.price || 'Check Price';
-  const priceHTML = price !== 'Check Amazon' && price !== 'Check Price' ?
-    `<div class="price" style="font-size: 1.5rem; font-weight: 800; color: #ff8c32; margin-left: 20px;">${price}</div>` :
-    '';
+  const hasDiscount = amazonData?.savingsPercent && amazonData?.originalPrice;
+
+  let priceHTML = '';
+  if (price !== 'Check Amazon' && price !== 'Check Price') {
+    if (hasDiscount) {
+      // Show original price (strikethrough), current price, and savings badge
+      priceHTML = `
+        <div class="price-container" style="display: flex; align-items: center; gap: 10px; margin-left: 20px;">
+          <div class="original-price" style="font-size: 1rem; color: #888; text-decoration: line-through;">${amazonData.originalPrice}</div>
+          <div class="price" style="font-size: 1.5rem; font-weight: 800; color: #ff8c32;">${price}</div>
+          <div class="savings-badge" style="background: #4CAF50; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: 700;">Save ${amazonData.savingsPercent}%</div>
+        </div>`;
+    } else {
+      // Regular price display
+      priceHTML = `<div class="price" style="font-size: 1.5rem; font-weight: 800; color: #ff8c32; margin-left: 20px;">${price}</div>`;
+    }
+  }
 
   const availabilityHTML = amazonData?.availability ?
     `<div class="availability" style="color: #4CAF50; font-size: 0.9rem; margin: 15px 0;">${amazonData.availability}</div>` :
