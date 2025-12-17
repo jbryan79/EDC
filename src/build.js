@@ -261,11 +261,35 @@ async function build() {
   }).join('\n\n');
 
   // Read the original index.html as a base template
-  const originalHTML = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  let outputHTML = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 
-  // For now, create a simplified output
-  // In a full implementation, you would parse and replace product sections
-  const outputHTML = originalHTML; // Placeholder - in production, replace product sections
+  // Replace product sections with Amazon-powered content
+  // Find and replace each category section
+  productsData.categories.forEach(category => {
+    const categoryProducts = validProducts.filter(p => p.categoryId === category.id);
+
+    if (categoryProducts.length === 0) return;
+
+    // Generate the new products HTML for this category
+    const productsHTML = categoryProducts.map(product => {
+      const amazonData = amazonDataMap[product.asin];
+      return generateProductCard(product, amazonData);
+    }).join('\n');
+
+    // Find the products-grid for this category and replace its contents
+    // Use a regex to find the category section and its products-grid
+    const categoryPattern = new RegExp(
+      `(<section class="category-section">.*?<h2 class="category-title">${category.name}</h2>.*?<div class="products-grid">)([\\s\\S]*?)(<\\/div>\\s*<\\/div>\\s*(?:<div class="view-all-link">|<\\/section>))`,
+      'i'
+    );
+
+    outputHTML = outputHTML.replace(categoryPattern, (match, before, oldProducts, after) => {
+      console.log(`   📝 Updating ${category.name} section with Amazon data`);
+      return before + '\n' + productsHTML + '\n            ' + after;
+    });
+  });
+
+  console.log('\n✅ Injected Amazon data into HTML\n');
 
   // Create dist directory if it doesn't exist
   const distDir = path.join(__dirname, '..', 'dist');
@@ -279,7 +303,7 @@ async function build() {
 
   // Copy static assets
   console.log('📋 Copying static assets...');
-  const assetsToCopy = ['style.css', 'app.js', 'script.js', 'toolbox-favicon.svg', 'robots.txt', 'sitemap.xml'];
+  const assetsToCopy = ['ugreen-vs-anker.html', 'style.css', 'app.js', 'script.js', 'toolbox-favicon.svg', 'robots.txt', 'sitemap.xml'];
   assetsToCopy.forEach(asset => {
     const srcPath = path.join(__dirname, '..', asset);
     const destPath = path.join(distDir, asset);
