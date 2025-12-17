@@ -5,13 +5,13 @@ const path = require('path');
 
 // Amazon PA-API Configuration
 const defaultClient = ProductAdvertisingAPIv1.ApiClient.instance;
-defaultClient.accessKey = process.env.AWS_ACCESS_KEY_ID;
-defaultClient.secretKey = process.env.AWS_SECRET_ACCESS_KEY;
+defaultClient.accessKey = process.env.MY_AWS_ACCESS_KEY_ID;
+defaultClient.secretKey = process.env.MY_AWS_SECRET_ACCESS_KEY;
 defaultClient.host = 'webservices.amazon.com';
-defaultClient.region = process.env.AWS_REGION || 'us-east-1';
+defaultClient.region = process.env.MY_AWS_REGION || 'us-east-1';
 
 const api = new ProductAdvertisingAPIv1.DefaultApi();
-const partnerTag = process.env.AWS_PARTNER_TAG;
+const partnerTag = process.env.MY_AWS_PARTNER_TAG;
 
 // Load products data
 const productsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8'));

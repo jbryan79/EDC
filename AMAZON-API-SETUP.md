@@ -25,11 +25,13 @@ cp .env.example .env
 
 Edit `.env` and add your Amazon PA-API credentials:
 
+**Note:** We use `MY_` prefix because standard AWS variable names are reserved by the deployment platform.
+
 ```
-AWS_ACCESS_KEY_ID=your_access_key_here
-AWS_SECRET_ACCESS_KEY=your_secret_key_here
-AWS_PARTNER_TAG=mylineup-20
-AWS_REGION=us-east-1
+MY_AWS_ACCESS_KEY_ID=your_access_key_here
+MY_AWS_SECRET_ACCESS_KEY=your_secret_key_here
+MY_AWS_PARTNER_TAG=mylineup-20
+MY_AWS_REGION=us-east-1
 ```
 
 **Where to find these:**
@@ -92,12 +94,14 @@ Open http://localhost:8080 in your browser to see your site with live Amazon dat
 
 Before deploying, add your API credentials to Netlify:
 
+**Important:** Use `MY_` prefix because Netlify reserves standard AWS variable names.
+
 1. Go to: https://app.netlify.com/sites/YOUR_SITE/settings/deploys#environment
 2. Add these variables:
-   - `AWS_ACCESS_KEY_ID` = your_access_key
-   - `AWS_SECRET_ACCESS_KEY` = your_secret_key
-   - `AWS_PARTNER_TAG` = mylineup-20
-   - `AWS_REGION` = us-east-1
+   - `MY_AWS_ACCESS_KEY_ID` = your_access_key
+   - `MY_AWS_SECRET_ACCESS_KEY` = your_secret_key
+   - `MY_AWS_PARTNER_TAG` = mylineup-20
+   - `MY_AWS_REGION` = us-east-1
 
 ### 6. Deploy to Netlify
 
