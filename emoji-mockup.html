@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Display Options - EDC Toolbox</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #ff8c32;
+            margin-bottom: 40px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .option-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .option-title {
+            color: #ff8c32;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .emoji-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        /* Option 1: Icon Badge Style */
+        .badge-style {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ff8c32 0%, #ff6b35 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(255, 140, 50, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .badge-style:hover {
+            transform: scale(1.05);
+        }
+
+        .badge-style .emoji {
+            font-size: 5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Option 2: Glowing Effect */
+        .glow-style .emoji {
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px rgba(255, 140, 50, 0.8))
+                    drop-shadow(0 0 40px rgba(255, 140, 50, 0.4));
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 140, 50, 0.8)); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 140, 50, 1)); }
+        }
+
+        /* Option 3: 3D Depth */
+        .depth-style .emoji {
+            font-size: 5rem;
+            text-shadow:
+                2px 2px 0 rgba(255, 140, 50, 0.3),
+                4px 4px 0 rgba(255, 140, 50, 0.2),
+                6px 6px 0 rgba(255, 140, 50, 0.1),
+                8px 8px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .depth-style .emoji:hover {
+            transform: rotate(-5deg) scale(1.1);
+        }
+
+        /* Option 4: Square Badge */
+        .square-badge {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ff8c32 0%, #ff6b35 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(255, 140, 50, 0.3);
+            transition: transform 0.3s ease, border-radius 0.3s ease;
+        }
+
+        .square-badge:hover {
+            transform: translateY(-5px);
+            border-radius: 25px;
+        }
+
+        .square-badge .emoji {
+            font-size: 5rem;
+        }
+
+        /* Option 5: Minimal + Glow */
+        .minimal-glow .emoji {
+            font-size: 6rem;
+            background: radial-gradient(circle, rgba(255, 140, 50, 0.2) 0%, transparent 70%);
+            padding: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .minimal-glow .emoji:hover {
+            background: radial-gradient(circle, rgba(255, 140, 50, 0.3) 0%, transparent 70%);
+            transform: scale(1.1);
+        }
+
+        /* Option 6: Brand Colors */
+        .brand-olight {
+            background: linear-gradient(135deg, #ff8c32 0%, #f7931e 100%);
+        }
+
+        .brand-spyderco {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .brand-ugreen {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .brand-badge {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-badge:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .brand-badge .emoji {
+            font-size: 5rem;
+        }
+
+        .note {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Emoji Display Options</h1>
+    <p style="color: #888; margin-bottom: 40px;">Hover over each option to see the interactive effects</p>
+
+    <div class="options-grid">
+        <!-- Option 1 -->
+        <div class="option-card">
+            <div class="option-title">Option 1: Circular Badge</div>
+            <div class="emoji-container">
+                <div class="badge-style">
+                    <span class="emoji">🔦</span>
+                </div>
+            </div>
+            <div class="note">Clean gradient circle with shadow. Scales on hover.</div>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="option-card">
+            <div class="option-title">Option 2: Glowing Effect</div>
+            <div class="emoji-container">
+                <div class="glow-style">
+                    <span class="emoji">🔦</span>
+                </div>
+            </div>
+            <div class="note">Pulsing orange glow. Eye-catching animation.</div>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="option-card">
+            <div class="option-title">Option 3: 3D Depth</div>
+            <div class="emoji-container">
+                <div class="depth-style">
+                    <span class="emoji">🔦</span>
+                </div>
+            </div>
+            <div class="note">Layered shadows for depth. Tilts on hover.</div>
+        </div>
+
+        <!-- Option 4 -->
+        <div class="option-card">
+            <div class="option-title">Option 4: Square Badge</div>
+            <div class="emoji-container">
+                <div class="square-badge">
+                    <span class="emoji">🔦</span>
+                </div>
+            </div>
+            <div class="note">Rounded square. Lifts up on hover.</div>
+        </div>
+
+        <!-- Option 5 -->
+        <div class="option-card">
+            <div class="option-title">Option 5: Minimal Glow</div>
+            <div class="emoji-container">
+                <div class="minimal-glow">
+                    <span class="emoji">🔦</span>
+                </div>
+            </div>
+            <div class="note">Subtle radial background. Scales on hover.</div>
+        </div>
+
+        <!-- Option 6 -->
+        <div class="option-card">
+            <div class="option-title">Option 6: Brand Colors</div>
+            <div class="emoji-container" style="display: flex; gap: 15px; justify-content: center;">
+                <div class="brand-badge brand-olight">
+                    <span class="emoji">🔦</span>
+                </div>
+                <div class="brand-badge brand-spyderco">
+                    <span class="emoji">🔪</span>
+                </div>
+                <div class="brand-badge brand-ugreen">
+                    <span class="emoji">🔌</span>
+                </div>
+            </div>
+            <div class="note">Each brand has its own signature color.</div>
+        </div>
+    </div>
+
+    <div style="text-align: center; color: #888; padding: 20px; border-top: 1px solid #333;">
+        <p>Open this file in your browser to see all options side-by-side</p>
+        <p style="margin-top: 10px;">Pick your favorite and I'll implement it! 🚀</p>
+    </div>
+</body>
+</html>

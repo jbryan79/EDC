@@ -8,7 +8,11 @@
       "Bash(git commit -m \"$(cat <<''EOF''\nFix environment variable names for Netlify deployment\n\nUpdated build.js to use MY_ prefixed environment variables to avoid conflicts with Netlify''s reserved AWS variable names. This resolves the \"exposed secrets\" build failure.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push:*)",
       "Bash(dir:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__get-library-docs",
+      "Bash(start emoji-mockup.html)",
+      "Bash(start image-treatment-mockup.html)"
     ],
     "deny": [],
     "ask": []
