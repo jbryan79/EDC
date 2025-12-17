@@ -3,7 +3,10 @@
     "allow": [
       "Bash(npm i:*)",
       "Bash(npm install)",
-      "Bash(del \"C:\\Users\\james\\OneDrive\\Projects\\EDC\\vercel.json\")"
+      "Bash(del \"C:\\Users\\james\\OneDrive\\Projects\\EDC\\vercel.json\")",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix environment variable names for Netlify deployment\n\nUpdated build.js to use MY_ prefixed environment variables to avoid conflicts with Netlify''s reserved AWS variable names. This resolves the \"exposed secrets\" build failure.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
