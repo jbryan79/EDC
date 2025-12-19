@@ -18,7 +18,8 @@
       "Bash(findstr:*)",
       "Bash(powershell:*)",
       "Bash(netlify env:list:*)",
-      "Bash(node src/extract-asins.js:*)"
+      "Bash(node src/extract-asins.js:*)",
+      "Bash(netlify status:*)"
     ],
     "deny": [],
     "ask": []
