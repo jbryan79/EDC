@@ -16,7 +16,9 @@
       "Bash(npm run build:*)",
       "Bash(attrib:*)",
       "Bash(findstr:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(netlify env:list:*)",
+      "Bash(node src/extract-asins.js:*)"
     ],
     "deny": [],
     "ask": []
