@@ -21,7 +21,8 @@
       "Bash(node src/extract-asins.js:*)",
       "Bash(netlify status:*)",
       "Bash(curl:*)",
-      "WebFetch(domain:jamesabryan.com)"
+      "WebFetch(domain:jamesabryan.com)",
+      "WebFetch(domain:edc.jamesabryan.com)"
     ],
     "deny": [],
     "ask": []
