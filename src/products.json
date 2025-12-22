@@ -19,6 +19,14 @@
           ],
           "brand": "OLIGHT",
           "badge": "Premium EDC Flashlight"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "customTitle": "WUBEN E7 1800 Lumen Rechargeable Mini Flashlight",
+          "customDescription": "[Description pending - Super Bright 6 Modes EDC Flashlight with Magnet, Typ-C Rechargeable LED; IP68 Pocket Flashlight for Headlamp Use, Rescue, Camping]",
+          "whyLove": [],
+          "brand": "WUBEN",
+          "badge": "Rechargeable EDC"
         }
       ]
     },
@@ -72,6 +80,46 @@
           ],
           "brand": "SPYDERCO",
           "badge": "Truck EDC Essential"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "customTitle": "Benchmade Griptilian 550-S30V",
+          "customDescription": "[Description pending - AXIS Lock Folding Knife 3.45\" S30V Satin Flat Ground Sheepsfoot Plain Blade, Black Noryl GTX Handles]",
+          "whyLove": [],
+          "brand": "BENCHMADE",
+          "badge": "Daily Carry"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "customTitle": "Spyderco ATR 2 At The Ready C70GP2",
+          "customDescription": "[Description pending - Folding Knife 3.47\" S30V Satin Plain Blade, Black G10 Handles, Compression Lock]",
+          "whyLove": [],
+          "brand": "SPYDERCO",
+          "badge": "EDC Rotation"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "customTitle": "Chris Reeve Large Sebenza 31 L31-1008",
+          "customDescription": "[Description pending - Folding Knife 3.61\" CPM-MagnaCut Stonewashed Insingo Blade, Sandblasted Titanium Handles, Single Blue Lug, Frame Lock]",
+          "whyLove": [],
+          "brand": "CHRIS REEVE",
+          "badge": "Premium EDC"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "customTitle": "Benchmade 535 Bugout",
+          "customDescription": "[Description pending - AXIS Folding Knife 3.24\" S30V Satin Plain Blade, Blue Grivory Handles]",
+          "whyLove": [],
+          "brand": "BENCHMADE",
+          "badge": "Ultralight EDC"
+        },
+        {
+          "asin": "NEEDS_ASIN",
+          "customTitle": "Microtech 1121-11 Ultratech ZBP",
+          "customDescription": "[Description pending - AUTO OTF Knife 3.5\" Bohler M390MK Apocalyptic Drop Point Combo Blade, Machined Black Aluminum Handles, Reversible Clip]",
+          "whyLove": [],
+          "brand": "MICROTECH",
+          "badge": "Premium OTF"
         }
       ]
     },
