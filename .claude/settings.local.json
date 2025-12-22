@@ -22,7 +22,8 @@
       "Bash(netlify status:*)",
       "Bash(curl:*)",
       "WebFetch(domain:jamesabryan.com)",
-      "WebFetch(domain:edc.jamesabryan.com)"
+      "WebFetch(domain:edc.jamesabryan.com)",
+      "Bash(netlify deploy:*)"
     ],
     "deny": [],
     "ask": []
