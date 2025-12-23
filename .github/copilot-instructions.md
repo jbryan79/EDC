@@ -6,12 +6,12 @@ Purpose: Give an AI coding agent the minimal, actionable context to be productiv
 - **Big picture:** This repo is a small static affiliate site package with an optional build pipeline that enriches static HTML using the Amazon Product Advertising API (PA-API). There are two main workflows: a simple static-deploy workflow (edit the HTML files and deploy) and an automated build workflow (run `npm run build` to fetch Amazon data and generate a `dist/` site).
 
 - **Key files and what they control:**
-  - [package.json](package.json) — scripts: `build`, `dev`, `deploy` (Netlify). Use these as primary commands.
-  - [src/build.js](src/build.js) — main build pipeline. Reads `src/products.json`, calls PA-API, injects product cards into `index.html`, writes `dist/index.html`, and copies asset files.
-  - [src/products.json](src/products.json) — canonical product list. Products with `asin: "NEEDS_ASIN"` are skipped.
-  - [index.html](index.html) — base HTML used by the build script; contains category sections that the build replaces via regex.
-  - [app.js](app.js) — frontend interactions, widgets, and visual effects (WebGL, counters, theme switching). Treat as purely client-side code.
-  - [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md) — human-facing instructions for manual deploy and quick edits.
+  - [package.json](../package.json) — scripts: `build`, `dev`, `deploy` (Netlify). Use these as primary commands.
+  - [src/build.js](../src/build.js) — main build pipeline. Reads `src/products.json`, calls PA-API, injects product cards into `index.html`, writes `dist/index.html`, and copies asset files.
+  - [src/products.json](../src/products.json) — canonical product list. Products with `asin: "NEEDS_ASIN"` are skipped.
+  - [index.html](../index.html) — base HTML used by the build script; contains category sections that the build replaces via regex.
+  - [app.js](../app.js) — frontend interactions, widgets, and visual effects (WebGL, counters, theme switching). Treat as purely client-side code.
+  - [DEPLOYMENT-GUIDE.md](../DEPLOYMENT-GUIDE.md) — human-facing instructions for manual deploy and quick edits.
   - `netlify.toml` / [netlify deploy] — present for Netlify deployment (used by `npm run deploy`).
 
 - **Environment & secrets:** The build pipeline requires Amazon credentials and partner tag in environment variables. Expect a `.env` file during development with these names:
@@ -33,7 +33,7 @@ Purpose: Give an AI coding agent the minimal, actionable context to be productiv
   - The HTML injection is done by regex replacements (not a template engine), so modifications to the structure of `index.html` must preserve the category section markers and class names used by the script (`<section class="category-section">`, `<h2 class="category-title">`, `<div class="products-grid">`).
 
 - **When to edit raw HTML vs. use the build:**
-  - For quick manual deploys (no PA-API), follow [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md): replace `href="#"` links with your Amazon affiliate links and rename `ugreen-brand-showcase.html` → `index.html`.
+  - For quick manual deploys (no PA-API), follow [DEPLOYMENT-GUIDE.md](../DEPLOYMENT-GUIDE.md): replace `href="#"` links with your Amazon affiliate links and rename `ugreen-brand-showcase.html` → `index.html`.
   - For dynamic product data (ratings, prices, images), provide valid ASINs in `src/products.json` and supply environment variables, then use the build pipeline to generate `dist/`.
 
 - **Conventions & patterns:**
